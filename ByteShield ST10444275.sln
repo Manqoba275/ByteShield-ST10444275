@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteShield ST10444275", "ByteShield ST10444275\ByteShield ST10444275.csproj", "{91DE3580-79DA-43F8-B3A3-F5EAFB2B2F3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91DE3580-79DA-43F8-B3A3-F5EAFB2B2F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91DE3580-79DA-43F8-B3A3-F5EAFB2B2F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91DE3580-79DA-43F8-B3A3-F5EAFB2B2F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91DE3580-79DA-43F8-B3A3-F5EAFB2B2F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFDE0826-8CC2-456D-BF15-1F664AEAA137}
+	EndGlobalSection
+EndGlobal
