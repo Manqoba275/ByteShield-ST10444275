@@ -1,0 +1,53 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Setup .NET SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x' # Use the .NET version compatible with your project
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore ByteShield-Chatbot.csproj
+
+      # Build the project
+      - name: Build
+        run: dotnet build ByteShield-Chatbot.csproj --no-restore --configuration Release
+
+      # Run tests (optional, add if you have a test project)
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
+        # Uncomment and adjust the path if you add a test project (e.g., ByteShield-Chatbot.Tests.csproj)
+
+      # Validate file presence (custom step for your project files)
+      - name: Validate project files
+        run: |
+          if [ ! -f "ByteShield-Chatbot.csproj" ]; then echo "CSProj file missing!" && exit 1; fi
+          if [ ! -f "Program.cs" ]; then echo "Program.cs missing!" && exit 1; fi
+          if [ ! -f "sound.wav" ]; then echo "sound.wav missing!" && exit 1; fi
+          if [ ! -f "logo.png" ]; then echo "logo.png missing!" && exit 1; fi
+          if [ ! -f "memory.txt" ]; then echo "memory.txt missing!" && exit 1; fi
+
+      # Optional: Capture build output or logs
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: ${{ github.workspace }}/bin/Release/
