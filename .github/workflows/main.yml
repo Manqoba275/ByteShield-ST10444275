@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI Pipeline for ByteShield Chatbot
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build-and-validate:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x' # Use the .NET version compatible with your project
+          dotnet-version: '8.0.x' # Adjust to your project's target framework (e.g., 6.0.x or 8.0.x)
 
       # Restore dependencies
       - name: Restore dependencies
@@ -31,12 +31,7 @@ jobs:
       - name: Build
         run: dotnet build ByteShield-Chatbot.csproj --no-restore --configuration Release
 
-      # Run tests (optional, add if you have a test project)
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal
-        # Uncomment and adjust the path if you add a test project (e.g., ByteShield-Chatbot.Tests.csproj)
-
-      # Validate file presence (custom step for your project files)
+      # Validate required files
       - name: Validate project files
         run: |
           if [ ! -f "ByteShield-Chatbot.csproj" ]; then echo "CSProj file missing!" && exit 1; fi
@@ -45,7 +40,7 @@ jobs:
           if [ ! -f "logo.png" ]; then echo "logo.png missing!" && exit 1; fi
           if [ ! -f "memory.txt" ]; then echo "memory.txt missing!" && exit 1; fi
 
-      # Optional: Capture build output or logs
+      # Optional: Upload build artifacts
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
